@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KutuphaneOtomasyonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Kayitlar">
+    <Key>
+      <PropertyRef Name="kayit_id" />
+    </Key>
+    <Property Name="kayit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullanici_id" Type="int" />
+    <Property Name="kitap_id" Type="int" />
+    <Property Name="alis_tarih" Type="datetime" />
+    <Property Name="son_tarih" Type="datetime" />
+    <Property Name="durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="Kaynaklar">
+    <Key>
+      <PropertyRef Name="kaynak_id" />
+    </Key>
+    <Property Name="kaynak_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kaynak_ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="kaynak_yazar" Type="nvarchar" MaxLength="50" />
+    <Property Name="kaynak_yayıncı" Type="nvarchar" MaxLength="50" />
+    <Property Name="kaynak_sayfasayısı" Type="int" />
+    <Property Name="kaynak_basımtarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="KULLANİCİLAR">
+    <Key>
+      <PropertyRef Name="kullanıcı_id" />
+    </Key>
+    <Property Name="kullanıcı_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullanıcı_ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullanıcı_soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullanıcı_tc" Type="nvarchar" MaxLength="11" />
+    <Property Name="kullanıcı_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullanıcı_telefon" Type="nchar" MaxLength="11" />
+    <Property Name="kullanıcı_ceza" Type="float" />
+    <Property Name="kullanıcı_cinsiyet" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Personeller">
+    <Key>
+      <PropertyRef Name="personel_ID" />
+    </Key>
+    <Property Name="personel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personel_ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="personel_soyAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="personel_tc" Type="nvarchar" MaxLength="11" />
+    <Property Name="personel_tel" Type="nvarchar" MaxLength="11" />
+    <Property Name="personel_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="personel_kullanıcıAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="personel_sifre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Kayitlar_Kaynaklar">
+    <End Role="Kaynaklar" Type="Self.Kaynaklar" Multiplicity="0..1" />
+    <End Role="Kayitlar" Type="Self.Kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kaynaklar">
+        <PropertyRef Name="kaynak_id" />
+      </Principal>
+      <Dependent Role="Kayitlar">
+        <PropertyRef Name="kitap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayitlar_KULLANİCİLAR">
+    <End Role="KULLANİCİLAR" Type="Self.KULLANİCİLAR" Multiplicity="0..1" />
+    <End Role="Kayitlar" Type="Self.Kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KULLANİCİLAR">
+        <PropertyRef Name="kullanıcı_id" />
+      </Principal>
+      <Dependent Role="Kayitlar">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KutuphaneOtomasyonModelStoreContainer">
+    <EntitySet Name="Kayitlar" EntityType="Self.Kayitlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kaynaklar" EntityType="Self.Kaynaklar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KULLANİCİLAR" EntityType="Self.KULLANİCİLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personeller" EntityType="Self.Personeller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kayitlar_Kaynaklar" Association="Self.FK_Kayitlar_Kaynaklar">
+      <End Role="Kaynaklar" EntitySet="Kaynaklar" />
+      <End Role="Kayitlar" EntitySet="Kayitlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayitlar_KULLANİCİLAR" Association="Self.FK_Kayitlar_KULLANİCİLAR">
+      <End Role="KULLANİCİLAR" EntitySet="KULLANİCİLAR" />
+      <End Role="Kayitlar" EntitySet="Kayitlar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

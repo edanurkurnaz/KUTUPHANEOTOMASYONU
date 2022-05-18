@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KutuphaneOtomasyonModelStoreContainer" CdmEntityContainer="KutuphaneOtomasyonEntities">
+    <EntitySetMapping Name="Personeller">
+      <EntityTypeMapping TypeName="KutuphaneOtomasyonModel.Personeller">
+        <MappingFragment StoreEntitySet="Personeller">
+          <ScalarProperty Name="personel_ID" ColumnName="personel_ID" />
+          <ScalarProperty Name="personel_ad" ColumnName="personel_ad" />
+          <ScalarProperty Name="personel_soyAd" ColumnName="personel_soyAd" />
+          <ScalarProperty Name="personel_tc" ColumnName="personel_tc" />
+          <ScalarProperty Name="personel_tel" ColumnName="personel_tel" />
+          <ScalarProperty Name="personel_mail" ColumnName="personel_mail" />
+          <ScalarProperty Name="personel_kullanıcıAd" ColumnName="personel_kullanıcıAd" />
+          <ScalarProperty Name="personel_sifre" ColumnName="personel_sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KULLANİCİLAR">
+      <EntityTypeMapping TypeName="KutuphaneOtomasyonModel.KULLANİCİLAR">
+        <MappingFragment StoreEntitySet="KULLANİCİLAR">
+          <ScalarProperty Name="kullanıcı_cinsiyet" ColumnName="kullanıcı_cinsiyet" />
+          <ScalarProperty Name="kullanıcı_ceza" ColumnName="kullanıcı_ceza" />
+          <ScalarProperty Name="kullanıcı_telefon" ColumnName="kullanıcı_telefon" />
+          <ScalarProperty Name="kullanıcı_mail" ColumnName="kullanıcı_mail" />
+          <ScalarProperty Name="kullanıcı_tc" ColumnName="kullanıcı_tc" />
+          <ScalarProperty Name="kullanıcı_soyad" ColumnName="kullanıcı_soyad" />
+          <ScalarProperty Name="kullanıcı_ad" ColumnName="kullanıcı_ad" />
+          <ScalarProperty Name="kullanıcı_id" ColumnName="kullanıcı_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kaynaklar">
+      <EntityTypeMapping TypeName="KutuphaneOtomasyonModel.Kaynaklar">
+        <MappingFragment StoreEntitySet="Kaynaklar">
+          <ScalarProperty Name="kaynak_basımtarihi" ColumnName="kaynak_basımtarihi" />
+          <ScalarProperty Name="kaynak_sayfasayısı" ColumnName="kaynak_sayfasayısı" />
+          <ScalarProperty Name="kaynak_yayıncı" ColumnName="kaynak_yayıncı" />
+          <ScalarProperty Name="kaynak_yazar" ColumnName="kaynak_yazar" />
+          <ScalarProperty Name="kaynak_ad" ColumnName="kaynak_ad" />
+          <ScalarProperty Name="kaynak_id" ColumnName="kaynak_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayitlar">
+      <EntityTypeMapping TypeName="KutuphaneOtomasyonModel.Kayitlar">
+        <MappingFragment StoreEntitySet="Kayitlar">
+          <ScalarProperty Name="durum" ColumnName="durum" />
+          <ScalarProperty Name="son_tarih" ColumnName="son_tarih" />
+          <ScalarProperty Name="alis_tarih" ColumnName="alis_tarih" />
+          <ScalarProperty Name="kitap_id" ColumnName="kitap_id" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+          <ScalarProperty Name="kayit_id" ColumnName="kayit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="KutuphaneOtomasyonModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

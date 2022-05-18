@@ -1,0 +1,3 @@
+﻿1>------ Rebuild All started: Project: KutuphaneOtomasyonWinForm, Configuration: Debug Any CPU ------
+1>  KutuphaneOtomasyonWinForm -> C:\Users\edanu\OneDrive\Masaüstü\kutuphaneotomasyonu\KutuphaneOtomasyonWinForm\KutuphaneOtomasyonWinForm\bin\Debug\KutuphaneOtomasyonWinForm.exe
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========

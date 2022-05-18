@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KutuphaneOtomasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Personeller">
+    <Key>
+      <PropertyRef Name="personel_ID" />
+    </Key>
+    <Property Name="personel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personel_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personel_soyAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personel_tc" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="personel_tel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="personel_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personel_kullanıcıAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personel_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="KutuphaneOtomasyonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Personeller" EntityType="Self.Personeller" />
+    <EntitySet Name="KULLANİCİLAR" EntityType="KutuphaneOtomasyonModel.KULLANİCİLAR" />
+    <EntitySet Name="Kaynaklar" EntityType="KutuphaneOtomasyonModel.Kaynaklar" />
+    <EntitySet Name="Kayitlar" EntityType="KutuphaneOtomasyonModel.Kayitlar" />
+    <EntitySet Name="sysdiagrams" EntityType="KutuphaneOtomasyonModel.sysdiagrams" />
+    <AssociationSet Name="FK_Kayitlar_Kaynaklar" Association="KutuphaneOtomasyonModel.FK_Kayitlar_Kaynaklar">
+      <End Role="Kaynaklar" EntitySet="Kaynaklar" />
+      <End Role="Kayitlar" EntitySet="Kayitlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayitlar_KULLANİCİLAR" Association="KutuphaneOtomasyonModel.FK_Kayitlar_KULLANİCİLAR">
+      <End Role="KULLANİCİLAR" EntitySet="KULLANİCİLAR" />
+      <End Role="Kayitlar" EntitySet="Kayitlar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KULLANİCİLAR">
+    <Key>
+      <PropertyRef Name="kullanıcı_id" />
+    </Key>
+    <Property Name="kullanıcı_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullanıcı_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanıcı_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanıcı_tc" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="kullanıcı_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanıcı_telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="kullanıcı_ceza" Type="Double" />
+    <Property Name="kullanıcı_cinsiyet" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kayitlar" Relationship="KutuphaneOtomasyonModel.FK_Kayitlar_KULLANİCİLAR" FromRole="KULLANİCİLAR" ToRole="Kayitlar" />
+  </EntityType>
+  <EntityType Name="Kaynaklar">
+    <Key>
+      <PropertyRef Name="kaynak_id" />
+    </Key>
+    <Property Name="kaynak_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kaynak_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kaynak_yazar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kaynak_yayıncı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kaynak_sayfasayısı" Type="Int32" />
+    <Property Name="kaynak_basımtarihi" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Kayitlar" Relationship="KutuphaneOtomasyonModel.FK_Kayitlar_Kaynaklar" FromRole="Kaynaklar" ToRole="Kayitlar" />
+  </EntityType>
+  <EntityType Name="Kayitlar">
+    <Key>
+      <PropertyRef Name="kayit_id" />
+    </Key>
+    <Property Name="kayit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullanici_id" Type="Int32" />
+    <Property Name="kitap_id" Type="Int32" />
+    <Property Name="alis_tarih" Type="DateTime" Precision="3" />
+    <Property Name="son_tarih" Type="DateTime" Precision="3" />
+    <Property Name="durum" Type="Boolean" />
+    <NavigationProperty Name="Kaynaklar" Relationship="KutuphaneOtomasyonModel.FK_Kayitlar_Kaynaklar" FromRole="Kayitlar" ToRole="Kaynaklar" />
+    <NavigationProperty Name="KULLANİCİLAR" Relationship="KutuphaneOtomasyonModel.FK_Kayitlar_KULLANİCİLAR" FromRole="Kayitlar" ToRole="KULLANİCİLAR" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Kayitlar_Kaynaklar">
+    <End Type="KutuphaneOtomasyonModel.Kaynaklar" Role="Kaynaklar" Multiplicity="0..1" />
+    <End Type="KutuphaneOtomasyonModel.Kayitlar" Role="Kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kaynaklar">
+        <PropertyRef Name="kaynak_id" />
+      </Principal>
+      <Dependent Role="Kayitlar">
+        <PropertyRef Name="kitap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayitlar_KULLANİCİLAR">
+    <End Type="KutuphaneOtomasyonModel.KULLANİCİLAR" Role="KULLANİCİLAR" Multiplicity="0..1" />
+    <End Type="KutuphaneOtomasyonModel.Kayitlar" Role="Kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KULLANİCİLAR">
+        <PropertyRef Name="kullanıcı_id" />
+      </Principal>
+      <Dependent Role="Kayitlar">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
